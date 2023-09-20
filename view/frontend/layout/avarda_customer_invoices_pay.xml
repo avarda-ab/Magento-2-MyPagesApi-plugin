@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © Avarda. All rights reserved.
+ * @package     Avarda_CustomerInvoices
+ */
+
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="customer-account-navigation-my-invoices">
+            <arguments>
+                <argument name="current" xsi:type="string">1</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Avarda\CustomerInvoices\Block\CustomerInvoices" name="CustomerInvoices" template="Avarda_CustomerInvoices::pay.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

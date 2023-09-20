@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © Avarda. All rights reserved.
+ * @package     Avarda_CustomerInvoices
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="avarda_customer" frontName="avarda_customer">
+            <module name="Avarda_CustomerInvoices" />
+        </route>
+    </router>
+</config>

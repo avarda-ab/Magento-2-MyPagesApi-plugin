@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © Avarda. All rights reserved.
+ * @package     Avarda_Checkout3
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="avarda_checkout3_section">
+                <group id="api">
+                    <field id="customer_invoices_active" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Customer My Page</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>avarda/customer_invoices/invoices_active</config_path>
+                    </field>
+                </group>
+            </group>
+            <group id="avarda_payments_payments_section">
+                <group id="api">
+                    <field id="customer_invoices_active" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Customer My Page</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>avarda/customer_invoices/checkout_active</config_path>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>
