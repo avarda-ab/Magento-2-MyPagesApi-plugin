@@ -11,13 +11,14 @@ use Magento\Store\Model\ScopeInterface;
 class ConfigHelper
 {
     const TEST_URL = 'https://stage.avarda360-api.avarda.com/';
-    const PROD_URL = 'https://authorization-api.avarda.com/';
+    const PROD_URL = 'https://avarda360-api.avarda.com/';
 
-    const TOKEN_PATH = 'Auth/token';
+    const TOKEN_PATH = 'auth/token';
     const KEY_TOKEN_FLAG = 'avarda_customer_invoice_api_token';
 
     const MODE_CHECKOUT = 'checkout';
     const MODE_PAYMENTS = 'payments';
+
     protected $parentModule = '';
 
     protected ScopeConfigInterface $config;
