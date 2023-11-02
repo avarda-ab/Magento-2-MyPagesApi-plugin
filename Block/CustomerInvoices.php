@@ -92,7 +92,7 @@ class CustomerInvoices extends Template
      */
     public function needsToPay($invoice)
     {
-        return $invoice['state'] === 'Unpaid';
+        return in_array($invoice['state'], ['Unpaid', 'Overdue']);
     }
 
     /**
@@ -110,5 +110,37 @@ class CustomerInvoices extends Template
     public function getCheckOutClientScriptPath()
     {
         return $this->configHelper->getCheckoutJsUrl();
+    }
+
+    public function getStateClass($state)
+    {
+        switch ($state) {
+            case 'Transferred':
+                return 'transferred';
+            case 'Paid':
+                return 'paid';
+            case 'Overdue':
+                return 'overdue';
+            case 'Overpaid':
+                return 'overpaid';
+            case 'Processing':
+                return 'processing';
+            case 'Scheduled':
+                return 'scheduled';
+            case 'Unpaid':
+                return 'unpaid';
+            case 'Notproduced':
+                return 'notproduced';
+            default:
+                return 'unknown';
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getStyles(): string
+    {
+        return $this->configHelper->getStyles();
     }
 }

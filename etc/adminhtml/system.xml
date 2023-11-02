@@ -9,20 +9,36 @@
     <system>
         <section id="payment">
             <group id="avarda_checkout3_section">
-                <group id="api">
-                    <field id="customer_invoices_active" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <group id="my_invoice" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda My Invoice</label>
+                    <field id="customer_invoices_active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Customer My Page</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>avarda/customer_invoices/invoices_active</config_path>
                     </field>
+                    <field id="custom_css" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Custom Css</label>
+                        <config_path>avarda/customer_invoices/custom_css</config_path>
+                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/more-features/custom-css-styles/">See documentation here</a>, add each config as one row for example:
+                    <pre class="code-example">buttons.primary.base.backgroundColor='#fff'
+buttons.primary.fontSize='15'</pre>]]></comment>
+                    </field>
                 </group>
             </group>
             <group id="avarda_payments_payments_section">
-                <group id="api">
-                    <field id="customer_invoices_active" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <group id="my_invoice" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda My Invoice</label>
+                    <field id="customer_invoices_active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Customer My Page</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>avarda/customer_invoices/checkout_active</config_path>
+                    </field>
+                    <field id="custom_css" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Custom Css</label>
+                        <config_path>avarda/customer_invoices/custom_css</config_path>
+                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/more-features/custom-css-styles/">See documentation here</a>, add each config as one row for example:
+                        <pre class="code-example">buttons.primary.base.backgroundColor='#fff'
+buttons.primary.fontSize='15'</pre>]]></comment>
                     </field>
                 </group>
             </group>

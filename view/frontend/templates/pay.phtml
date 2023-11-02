@@ -18,7 +18,7 @@ $jwtToken = $token['jwt'] ?? '';
         <div id="avarda-checkout-iframe"></div>
     </div>
 </div>
-<a href="<?=$block->getUrl('avarda_customer/invoices')?>">Back to list</a>
+<a href="<?=$block->getUrl('avarda_customer/invoices')?>"><?=__('Back to list')?></a>
 <?php if ($token): ?>
 <script>
     const CHECKOUT3_JS_BUNDLE = '<?= $block->getCheckOutClientScriptPath(); ?>';
@@ -43,7 +43,8 @@ $jwtToken = $token['jwt'] ?? '';
         sessionTimedOutCallback: function (avardaCheckoutInstance) {
             avardaCheckoutInstance.unmount();
             options.purchaseId = undefined;
-        }
+        },
+        styles: <?= $block->getStyles() ?>
     };
     avardaCheckoutInit(options);
 </script>

@@ -36,7 +36,7 @@ class Pay implements ActionInterface
             return $redirect;
         } else {
             $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->set(__('Pay'));
+            $resultPage->getConfig()->getTitle()->set(__('Pay Invoice'));
 
             return $resultPage;
         }

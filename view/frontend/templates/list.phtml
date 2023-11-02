@@ -5,7 +5,7 @@
  */
 /** @var $block \Avarda\CustomerInvoices\Block\CustomerInvoices */
 ?>
-<div class="table-wrapper key-orders-history">
+<div class="table-wrapper my-invoices-list">
     <table class="data table table-order-items history" id="my-keys-table">
         <thead>
             <tr>
@@ -19,6 +19,7 @@
         <tbody>
             <?php
             $itemCount = 0;
+            $dontShowInvoices = false;
             $accounts = $block->getCustomerAccounts();
             if (is_array($accounts)) {
                 foreach ($accounts as $order) {
@@ -27,34 +28,58 @@
                         <td class="col"><?= $block->escapeHtml(__($order['type'])); ?></td>
                         <td class="col date"><?= $block->escapeHtml($block->formatDate($order['dueDate'])); ?></td>
                         <td class="col"><?= $block->getFormattedPrice($order['balance']); ?></td>
-                        <td class="col"><?= $block->escapeHtml(__($order['state'])); ?></td>
-                        <td class="col"><a href="<?= $block->getUrl('avarda_customer/invoices/account', ['id' => $order['id']]); ?>">View ></a></td>
+                        <td class="col"><span class="state <?=$block->getStateClass($order['state'])?>"><?= $block->escapeHtml(__($order['state'])); ?></span></td>
+                        <td class="col">
+                            <a href="<?= $block->getUrl('avarda_customer/invoices/account', ['id' => $order['id']]); ?>"><?=__("View >")?></a>
+                            <?php if ($block->needsToPay($order)): ?>
+                                <div class="actions-toolbar">
+                                    <div class="primary">
+                                        <form method="get" action="<?=$block->getUrl('avarda_customer/invoices/pay', ['id' => $order['id']])?>">
+                                            <button type="submit" title="<?=__('Pay Invoice')?>" class="action primary"><span><?=__('Pay Invoice')?></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </td>
                     </tr>
                     <?php
                 }
             } else {
+                $dontShowInvoices = true;
                 $itemCount++; ?>
                 <tr>
-                    <td class="col"><?= $block->escapeHtml(__('Loan')); ?></td>
-                    <td class="col">--.--.----</td>
-                    <td class="col"><?= $block->getFormattedPrice(0); ?></td>
-                    <td class="col">&mdash;</td>
-                    <td class="col"><a href="<?= $block->escapeHtmlAttr($accounts); ?>" target="_blank">Tunnistaudu</a></td>
+                    <td class="col" colspan="6">
+                        <?= __('To see your invoices, you have to authenticate yourself. Continue to authentication') ?>
+                        <a href="<?= $block->escapeHtmlAttr($accounts); ?>" target="_blank"><?= __('in here') ?></a>
+                    </td>
                 </tr>
                 <?php
             }
 
-            $invoices = $block->getCustomerInvoices();
-            foreach ($invoices as $order) {
-                $itemCount++; ?>
-                <tr>
-                    <td class="col"><?= $block->escapeHtml(__($order['type'])); ?></td>
-                    <td class="col date"><?= $block->escapeHtml($block->formatDate($order['dueDate'])); ?></td>
-                    <td class="col"><?= $block->getFormattedPrice($order['balance']); ?></td>
-                    <td class="col"><?= $block->escapeHtml(__($order['state'])); ?></td>
-                    <td class="col"><a href="<?= $block->getUrl('avarda_customer/invoices/invoice', ['id' => $order['id']]); ?>"><?=__("View >")?></a></td>
-                </tr>
-                <?php
+            if (!$dontShowInvoices) {
+                $invoices = $block->getCustomerInvoices();
+                foreach ($invoices as $order) {
+                    $itemCount++; ?>
+                    <tr>
+                        <td class="col"><?= $block->escapeHtml(__($order['type'])); ?></td>
+                        <td class="col date"><?= $block->escapeHtml($block->formatDate($order['dueDate'])); ?></td>
+                        <td class="col"><?= $block->getFormattedPrice($order['balance']); ?></td>
+                        <td class="col"><span class="state <?=$block->getStateClass($order['state'])?>"><?= $block->escapeHtml(__($order['state'])); ?></span></td>
+                        <td class="col">
+                            <a href="<?= $block->getUrl('avarda_customer/invoices/invoice', ['id' => $order['id']]); ?>"><?=__("View >")?></a>
+                            <?php if ($block->needsToPay($order)): ?>
+                                <div class="actions-toolbar">
+                                    <div class="primary">
+                                        <form method="get" action="<?=$block->getUrl('avarda_customer/invoices/pay', ['id' => $order['id']])?>">
+                                            <button type="submit" title="<?=__('Pay Invoice')?>" class="action primary"><span><?=__('Pay Invoice')?></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
             }
             if ($itemCount == 0) { ?>
                 <tr>

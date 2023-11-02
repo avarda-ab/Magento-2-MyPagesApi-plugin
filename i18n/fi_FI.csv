@@ -1,40 +1,47 @@
-My Account,Tilini
-My Invoices,Laskuni
-Pay,Maksusivu
-Pay,Siirry maksamaan
-Due Date,Eräpäivä
-Total Amount,Kokonaissumma
-Minimum amount to pay,Maksettava vähimmäismäärä
-Balance,Saldo
-Status,Tila
-state,Tila
-Payment Reference,Viitenumero
-Receiver,Maksunsaaja
-Account Number,Tilinumero
-Order Reference,Tilausnumero
-Transactions,Tapahtumat
-Date,Päivämäärä
-Description,Kuvaus
-Amount,Summa
-Invoice Details,Laskun tiedot
-Invoice Created,Luontipäivä
-Type,Tyyppi
-type,Tyyppi
-Loan,Tili
-View >,Näytä tiedot
-No Invoices!,Sinulla ei ole laskuja. Valitse maksutavaksi lasku tai tili, kun seuraavan kerran teet ostoksia.
-Error initializing the payment,Tapahtui virhe, yritä hetken päästä uudestaan.
-Enable Customer My Page,Enable Customer MyPages
-Back to list,Takaisin
-DirectInvoice,Lasku
-Account,Tili
-Unpaid,Maksamaton
-Transferred,Siirretty tiliin
-Unpaid, Maksamatta
-Paid, Maksettu
-Overdue, Erääntynyt
-Transferred, Siirretty tiliin
-Overpaid, Maksettu liikaa
-Processing, Käsittelyssä
-Scheduled, Ajastettu
-Unknown, Tila ei tiedossa
+"My Account","Tilini"
+"My Invoices","Laskuni"
+"Pay","Maksusivu"
+"Pay","Siirry maksamaan"
+"Due Date","Eräpäivä"
+"Total Amount","Kokonaissumma"
+"Minimum amount to pay","Maksettava vähimmäismäärä"
+"Status","Tila"
+"state","Tila"
+"Payment Reference","Viitenumero"
+"Receiver","Maksunsaaja"
+"Account Number","Tilinumero"
+"Order Reference","Tilausnumero"
+"Transactions","Tapahtumat"
+"Date","Päivämäärä"
+"Description","Kuvaus"
+"Amount","Summa"
+"Invoice Details","Laskun tiedot"
+"Invoice Created","Luontipäivä"
+"Type","Tyyppi"
+"type","Tyyppi"
+"Loan","Tili"
+"View >","Näytä tiedot"
+"No Invoices!","Sinulla ei ole laskuja. Kun valitset maksutavaksi laskum tai tilin, näet laskutietosi tältä sivulta."
+"Error initializing the payment","Tapahtui virhe, yritä hetken päästä uudestaan."
+"Enable Customer My Page","Enable Customer MyPages"
+"Back to list","Takaisin"
+"DirectInvoice","Lasku"
+"Account","Tili"
+"Unpaid","Maksamaton"
+"Transferred","Siirretty tiliin"
+"Unpaid"," Maksamatta"
+"Paid"," Maksettu"
+"Overdue"," Erääntynyt"
+"Transferred"," Siirretty tiliin"
+"Overpaid"," Maksettu liikaa"
+"Processing"," Käsittelyssä"
+"Scheduled"," Ajastettu"
+"Notproduced","Odottaa"
+"Unknown"," Tila ei tiedossa"
+"To see your invoices, you have to authenticate yourself. Continue to authentication","Nähdäksesi laskujen tiedot, sinun täytyy tunnistautua pankkitunnuksilla. Jatka tunnistautumiseen"
+"in here","tästä"
+"Pay Invoice","Maksa lasku"
+"Account Created","Luontipäivä"
+"Open balance","Avoin saldo"
+"Account Details","Tilin tiedot"
+"Additional Details","Lisätiedot"

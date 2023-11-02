@@ -172,4 +172,54 @@ class ConfigHelper
             return 'https://checkout-cdn.avarda.com/cdn/static/js/main.js';
         }
     }
+
+    /**
+     * Takes from config rows and parses them to json to be used in init
+     * buttons.primary.fontSize='22'
+     * buttons.primary.base.backgroundColor='#fff'
+     *
+     * @return string
+     */
+    public function getStyles()
+    {
+        $customCss = $this->getConfigValue('avarda/customer_invoices/custom_css');
+        $styles = [];
+        if ($customCss && count(explode("\n", $customCss)) > 0) {
+            foreach (explode("\n", $customCss) as $row) {
+                if (!trim($row) && strpos($row, '=') === false) {
+                    continue;
+                }
+                [$path, $value] = explode('=', $row);
+                $value = trim($value, " \t\n\r\0\x0B;'" . '"');
+
+                if (!$value || !$path) {
+                    continue;
+                }
+
+                $pathParts = explode('.', $path);
+                $prevKey = false;
+                foreach ($pathParts as $part) {
+                    if ($prevKey === false) {
+                        if (!isset($styles[$part])) {
+                            $styles[$part] = [];
+                        }
+                        $prevKey = &$styles[$part];
+                    } else {
+                        if (!isset($prevKey[$part])) {
+                            $prevKey[$part] = [];
+                        }
+                        $prevKey = &$prevKey[$part];
+                    }
+                }
+                $prevKey = is_numeric($value) ? floatval($value) : $value;
+                unset($prevKey);
+            }
+        }
+        $stylesJson = json_encode($styles);
+        if (!$stylesJson) {
+            $stylesJson = '[]';
+        }
+
+        return $stylesJson;
+    }
 }

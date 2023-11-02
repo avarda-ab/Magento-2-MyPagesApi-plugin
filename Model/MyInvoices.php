@@ -131,10 +131,22 @@ class MyInvoices
         $localeCode = $this->localeResolver->getLocale();
         $parts = explode('_', $localeCode);
         $lang = reset($parts);
+        $recognizedLocales = [
+            "en" => 0,
+            "sv" => 1,
+            "fi" => 2,
+            "no" => 3,
+            "et" => 4,
+            "dk" => 5,
+            "cz" => 6,
+            "lt" => 7,
+            "sk" => 9,
+            "pl" => 10,
+        ];
 
         try {
             $response = $this->avardaClient->post($url, [
-                'language' => $lang,
+                'language' => $recognizedLocales[$lang] ?? 0, // Defaults to english
                 'accountId' => $purchaseId,
             ], $headers);
             $purchaseData = json_decode($response->getBody(), true);
