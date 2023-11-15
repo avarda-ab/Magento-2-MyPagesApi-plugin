@@ -57,8 +57,7 @@
     }
 }
 
-.account .column.main
-{
+.account .column.main {
     .block.my-invoice {
         .td-table {
             border: none;
@@ -75,10 +74,30 @@
             margin: 0 0 1px;
         }
     }
+
+    @media screen and (max-width: (@screen__s - 1px)) {
+        .col.actions {
+            > a {
+                margin-left: 15px;
+
+                &:after {
+                    display: block;
+                    content: " ";
+                    margin-bottom: 8px;
+                }
+            }
+
+            .actions-toolbar {
+                margin-left: 0;
+            }
+        }
+    }
+
     .block.my-invoice-details .block-title {
         border: none;
         margin: 0 0 0 10px;
     }
+
     .block.my-invoice-transactions .block-title {
         margin: 0;
         padding-left: 10px;
