@@ -39,7 +39,7 @@ $invoice = $block->getCustomerInvoice();
                                 <td>
                                     <div class="state <?=$block->getStateClass($invoice['state'])?>"><?=__($invoice['state'])?></div>
                                 </td>
-                                <td>
+                                <td class="col actions">
                                     <?php if ($block->needsToPay($invoice)): ?>
                                         <div class="actions-toolbar">
                                             <div class="primary">

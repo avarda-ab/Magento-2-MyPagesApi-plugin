@@ -37,7 +37,7 @@ $account = $block->getCustomerAccount();
                                 <td>
                                     <div class="state <?=$block->getStateClass($account['state'])?>"><?=__($account['state'])?></div>
                                 </td>
-                                <td>
+                                <td class="col actions">
                                     <?php if ($block->needsToPay($account)): ?>
                                         <div class="actions-toolbar">
                                             <div class="primary">
