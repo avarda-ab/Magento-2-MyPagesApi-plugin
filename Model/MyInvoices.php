@@ -94,7 +94,10 @@ class MyInvoices
         $customerId = $this->customerSession->getCustomerId();
         $lastPurchaseId = $this->getLastPurchaseId($customerId, true);
         if (!$lastPurchaseId) {
-            return [];
+            $lastPurchaseId = $this->getLastPurchaseId($customerId);
+            if (!$lastPurchaseId) {
+                return [];
+            }
         }
 
         $url = $this->configHelper->getApiUrl() . 'Accounts';
