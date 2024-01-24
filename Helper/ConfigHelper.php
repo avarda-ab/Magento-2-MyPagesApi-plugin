@@ -13,18 +13,23 @@ class ConfigHelper
     const TEST_URL = 'https://stage.avarda360-api.avarda.com/';
     const PROD_URL = 'https://avarda360-api.avarda.com/';
 
+    const STAGE_CHECKOUT_JS_URL = 'https://stage.checkout-cdn.avarda.com/cdn/static/js/main.js';
+    const PROD_CHECKOUT_JS_URL = 'https://checkout-cdn.avarda.com/cdn/static/js/main.js';
+
     const TOKEN_PATH = 'auth/token';
     const KEY_TOKEN_FLAG = 'avarda_customer_invoice_api_token';
-
     const MODE_CHECKOUT = 'checkout';
     const MODE_PAYMENTS = 'payments';
 
-    protected $parentModule = '';
+    protected string $parentModule = '';
 
     protected ScopeConfigInterface $config;
     protected EncryptorInterface $encryptor;
     protected FlagManager $flagManager;
 
+    /**
+     * @throws Exception
+     */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         EncryptorInterface $encryptor,
@@ -167,9 +172,9 @@ class ConfigHelper
     public function getCheckoutJsUrl()
     {
         if ($this->getTestMode()) {
-            return 'https://stage.checkout-cdn.avarda.com/cdn/static/js/main.js';
+            return self::STAGE_CHECKOUT_JS_URL;
         } else {
-            return 'https://checkout-cdn.avarda.com/cdn/static/js/main.js';
+            return self::PROD_CHECKOUT_JS_URL;
         }
     }
 
