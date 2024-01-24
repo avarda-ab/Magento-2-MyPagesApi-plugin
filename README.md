@@ -4,7 +4,7 @@ Module adds Avarda My Pages integration to Magento 2 under customer account.
 
 ## Module Installation
 
-1. `composer require avarda/module-customer-invoices"`
+1. `composer require avarda/module-customer-invoices`
 2. `bin/magento module:enable Avarda_CustomerInvoices`
 3. `bin/magento setup:upgrade`
 
