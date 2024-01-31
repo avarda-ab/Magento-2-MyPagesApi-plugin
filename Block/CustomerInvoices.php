@@ -65,13 +65,14 @@ class CustomerInvoices extends Template
     }
 
     /**
+     * @param string|null $invoiceId
      * @return array
      * @throws ClientException
      * @throws GuzzleException
      */
-    public function getCustomerInvoice()
+    public function getCustomerInvoice(string $invoiceId = null)
     {
-        $id = $this->getRequest()->getParam('id');
+        $id = $invoiceId ?: $this->getRequest()->getParam('id');
         return $this->myInvoices->getCustomerInvoices($id);
     }
 

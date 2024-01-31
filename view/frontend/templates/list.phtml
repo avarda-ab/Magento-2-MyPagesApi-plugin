@@ -59,11 +59,12 @@
             if (!$dontShowInvoices) {
                 $invoices = $block->getCustomerInvoices();
                 foreach ($invoices as $order) {
-                    $itemCount++; ?>
+                    $itemCount++;
+                    $invoice = $block->getCustomerInvoice($order['id']); ?>
                     <tr>
                         <td class="col"><?= $block->escapeHtml(__($order['type'])); ?></td>
                         <td class="col date"><?= $block->escapeHtml($block->formatDate($order['dueDate'])); ?></td>
-                        <td class="col"><?= $block->getFormattedPrice($order['balance']); ?></td>
+                        <td class="col"><?= $block->getFormattedPrice($invoice['originalAmount']); ?></td>
                         <td class="col"><span class="state <?=$block->getStateClass($order['state'])?>"><?= $block->escapeHtml(__($order['state'])); ?></span></td>
                         <td class="col actions">
                             <a href="<?= $block->getUrl('avarda_customer/invoices/invoice', ['id' => $order['id']]); ?>"><?=__("View >")?></a>
