@@ -7,141 +7,48 @@
 namespace Avarda\CustomerInvoices\Block;
 
 use Avarda\CustomerInvoices\Helper\ConfigHelper;
-use Avarda\CustomerInvoices\Model\MyInvoices;
-use GuzzleHttp\Exception\GuzzleException;
 use Magento\Directory\Model\Currency;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Payment\Gateway\Http\ClientException;
 
 class CustomerInvoices extends Template
 {
-    protected MyInvoices $myInvoices;
+    protected ScopeConfigInterface $scopeConfig;
+    protected ResolverInterface $locale;
     protected ConfigHelper $configHelper;
     protected Currency $price;
 
     public function __construct(
-        Context $context,
-        MyInvoices $myInvoices,
-        Currency $price,
+        ScopeConfigInterface $scopeConfig,
+        ResolverInterface $locale,
         ConfigHelper $configHelper,
+        Context $context,
+        Currency $price,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->myInvoices = $myInvoices;
+        $this->scopeConfig = $scopeConfig;
+        $this->locale = $locale;
         $this->configHelper = $configHelper;
         $this->price = $price;
     }
 
-    /**
-     * @return array
-     * @throws ClientException
-     * @throws GuzzleException
-     */
-    public function getCustomerInvoices()
+    public function getAvardaSiteKey(): string
     {
-        return $this->myInvoices->getCustomerInvoices();
+        return $this->configHelper->getAvardaSiteKey();
     }
 
-    /**
-     * @return array|string
-     * @throws GuzzleException
-     * @throws ClientException
-     */
-    public function getCustomerAccounts()
+    public function getPayFrameUrl(): string
     {
-        return $this->myInvoices->getCustomerAccounts();
+        return $this->configHelper->getTestMode() ? 'https://pay-frame.stage.avarda.com/cdn/pay-frame.js' : 'https://pay-frame.avarda.com/cdn/pay-frame.js';
     }
 
-    /**
-     * @return array|string
-     * @throws ClientException
-     * @throws GuzzleException
-     */
-    public function getCustomerAccount()
+    public function getLocale(): string
     {
-        $id = $this->getRequest()->getParam('id');
-        return $this->myInvoices->getCustomerAccounts($id);
-    }
+        $locale = $this->locale->getLocale();
 
-    /**
-     * @param string|null $invoiceId
-     * @return array
-     * @throws ClientException
-     * @throws GuzzleException
-     */
-    public function getCustomerInvoice(string $invoiceId = null)
-    {
-        $id = $invoiceId ?: $this->getRequest()->getParam('id');
-        return $this->myInvoices->getCustomerInvoices($id);
-    }
-
-    /**
-     * @return array|string
-     * @throws ClientException
-     * @throws GuzzleException
-     */
-    public function getPayToken()
-    {
-        $id = $this->getRequest()->getParam('id');
-        return $this->myInvoices->getPayToken($id);
-    }
-
-    /**
-     * @param $invoice
-     * @return bool
-     */
-    public function needsToPay($invoice)
-    {
-        return in_array($invoice['state'], ['Unpaid', 'Overdue']);
-    }
-
-    /**
-     * @param float $price
-     * @return string
-     */
-    public function getFormattedPrice($price)
-    {
-        return $this->price->format($price);
-    }
-
-    /**
-     * @return string
-     */
-    public function getCheckOutClientScriptPath()
-    {
-        return $this->configHelper->getCheckoutJsUrl();
-    }
-
-    public function getStateClass($state)
-    {
-        switch ($state) {
-            case 'Transferred':
-                return 'transferred';
-            case 'Paid':
-                return 'paid';
-            case 'Overdue':
-                return 'overdue';
-            case 'Overpaid':
-                return 'overpaid';
-            case 'Processing':
-                return 'processing';
-            case 'Scheduled':
-                return 'scheduled';
-            case 'Unpaid':
-                return 'unpaid';
-            case 'Notproduced':
-                return 'notproduced';
-            default:
-                return 'unknown';
-        }
-    }
-
-    /**
-     * @return string
-     */
-    public function getStyles(): string
-    {
-        return $this->configHelper->getStyles();
+        return explode('_', $locale)[0];
     }
 }

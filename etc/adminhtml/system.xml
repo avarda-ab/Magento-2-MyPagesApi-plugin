@@ -16,6 +16,10 @@
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>avarda/customer_invoices/invoices_active</config_path>
                     </field>
+                    <field id="test_mode" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Site Key</label>
+                        <config_path>avarda/customer_invoices/checkout_site_key</config_path>
+                    </field>
                     <field id="custom_css" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Custom Css</label>
                         <config_path>avarda/customer_invoices/custom_css</config_path>
@@ -32,6 +36,10 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Enable Customer My Invoice Page</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>avarda/customer_invoices/checkout_active</config_path>
+                    </field>
+                    <field id="test_mode" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Site Key</label>
+                        <config_path>avarda/customer_invoices/payments_site_key</config_path>
                     </field>
                     <field id="custom_css" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Custom Css</label>
