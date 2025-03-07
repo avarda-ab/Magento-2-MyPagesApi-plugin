@@ -52,6 +52,22 @@ class ConfigHelper
     }
 
     /**
+     * Get My Pages configuration status
+     *
+     * @return bool
+     */
+    public function isActive()
+    {
+        if ($this->getMode() == self::MODE_CHECKOUT) {
+            return (bool) $this->config->getValue('avarda/customer_invoices/checkout_active');
+        } elseif ($this->getMode() == self::MODE_PAYMENTS) {
+            return (bool) $this->config->getValue('avarda/customer_invoices/payments_active');
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @return bool|null
      */
     public function getTestMode()

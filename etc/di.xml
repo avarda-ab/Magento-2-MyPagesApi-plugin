@@ -11,4 +11,7 @@
             <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\View\Layout">
+        <plugin name="remove_invoices_navigation" type="Avarda\CustomerInvoices\Plugin\Navigation" />
+    </type>
 </config>
