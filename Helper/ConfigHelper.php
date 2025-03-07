@@ -15,6 +15,9 @@ class ConfigHelper
     const MODE_CHECKOUT = 'checkout';
     const MODE_PAYMENTS = 'payments';
 
+    const CHECKOUT_ACTIVE = 'avarda/customer_invoices/checkout_active';
+    const PAYMENTS_ACTIVE = 'avarda/customer_invoices/payments_active';
+
     protected string $parentModule = '';
 
     protected ScopeConfigInterface $config;
@@ -51,6 +54,19 @@ class ConfigHelper
         }
     }
 
+    public function getActiveMode(): ?string
+    {
+        if ($this->isActive()) {
+            if ($this->config->isSetFlag(self::CHECKOUT_ACTIVE)) {
+                return self::MODE_CHECKOUT;
+            } elseif ($this->config->isSetFlag(self::PAYMENTS_ACTIVE)) {
+                return self::MODE_PAYMENTS;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Get My Pages configuration status
      *
@@ -58,10 +74,8 @@ class ConfigHelper
      */
     public function isActive()
     {
-        if ($this->getMode() == self::MODE_CHECKOUT) {
-            return (bool) $this->config->getValue('avarda/customer_invoices/checkout_active');
-        } elseif ($this->getMode() == self::MODE_PAYMENTS) {
-            return (bool) $this->config->getValue('avarda/customer_invoices/payments_active');
+        if ($this->getMode()) {
+            return $this->config->isSetFlag(self::CHECKOUT_ACTIVE) || $this->config->isSetFlag(self::PAYMENTS_ACTIVE);
         } else {
             return false;
         }
@@ -72,9 +86,9 @@ class ConfigHelper
      */
     public function getTestMode()
     {
-        if ($this->getMode() == self::MODE_CHECKOUT) {
+        if ($this->getActiveMode() == self::MODE_CHECKOUT) {
             return (bool) $this->config->getValue('payment/avarda_checkout3_checkout/test_mode');
-        } elseif ($this->getMode() == self::MODE_PAYMENTS) {
+        } elseif ($this->getActiveMode() == self::MODE_PAYMENTS) {
             return (bool) $this->config->getValue('avarda_payments/api/test_mode');
         } else {
             return false;
@@ -83,9 +97,9 @@ class ConfigHelper
 
     public function getAvardaSiteKey()
     {
-        if ($this->getMode() == self::MODE_CHECKOUT) {
+        if ($this->getActiveMode() == self::MODE_CHECKOUT) {
             return $this->config->getValue('avarda/customer_invoices/checkout_site_key') ?? '';
-        } elseif ($this->getMode() == self::MODE_PAYMENTS) {
+        } elseif ($this->getActiveMode() == self::MODE_PAYMENTS) {
             return $this->config->getValue('avarda/customer_invoices/payments_site_key') ?? '';
         } else {
             return '';

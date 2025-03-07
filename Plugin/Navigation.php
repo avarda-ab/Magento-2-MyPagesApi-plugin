@@ -1,25 +1,24 @@
 <?php
 namespace Avarda\CustomerInvoices\Plugin;
 
+use Avarda\CustomerInvoices\Helper\ConfigHelper;
 use Magento\Framework\View\Layout;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Store\Model\ScopeInterface;
 
 class Navigation
 {
-    protected ScopeConfigInterface $scopeConfig;
+    protected ConfigHelper $configHelper;
 
-    public function __construct(ScopeConfigInterface $scopeConfig)
-    {
-        $this->scopeConfig = $scopeConfig;
+    public function __construct
+    (
+        ConfigHelper $configHelper
+    ) {
+        $this->configHelper = $configHelper;
     }
 
     public function beforeGetOutput(Layout $layout)
     {
-        $checkoutActive = $this->scopeConfig->getValue('avarda/customer_invoices/checkout_active', ScopeInterface::SCOPE_STORE);
-        $paymentsActive = $this->scopeConfig->getValue('avarda/customer_invoices/payments_active', ScopeInterface::SCOPE_STORE);
-
-        if (!$checkoutActive && !$paymentsActive) {
+        if (!$this->configHelper->isActive()) {
             $layout->unsetElement('customer-account-navigation-my-invoices');
         }
     }
