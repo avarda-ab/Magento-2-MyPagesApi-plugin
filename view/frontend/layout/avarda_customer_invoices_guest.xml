@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceContainer name="sidebar.additional" remove="true"/>
+
+        <referenceContainer name="columns">
+            <container name="avarda.guest.customerinvoices.before" label="Avarda Customer Guest Invoices before" before="CustomerInvoices"/>
+            <block class="Avarda\CustomerInvoices\Block\CustomerInvoices" name="CustomerInvoices" template="Avarda_CustomerInvoices::list.phtml" cacheable="false" before="main"/>
+            <container name="avarda.guest.customerinvoices.after" label="Avarda Customer Guest Invoices after" after="CustomerInvoices"/>
+        </referenceContainer>
+    </body>
+</page>
