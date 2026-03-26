@@ -42,7 +42,7 @@ class CustomerInvoices extends Template
 
     public function getPayFrameUrl(): string
     {
-        return $this->configHelper->getTestMode() ? 'https://pay-frame.stage.avarda.com/cdn/pay-frame.js' : 'https://pay-frame.avarda.com/cdn/pay-frame.js';
+        return $this->configHelper->getTestMode() ? 'https://pay-frame.stage.avarda.com/cdn/v2/pay-frame.js' : 'https://pay-frame.avarda.com/cdn/v2/pay-frame.js';
     }
 
     public function getLocale(): string

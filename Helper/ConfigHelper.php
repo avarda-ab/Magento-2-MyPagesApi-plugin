@@ -10,8 +10,8 @@ use Magento\Store\Model\ScopeInterface;
 
 class ConfigHelper
 {
-    const TEST_URL = 'https://pay-frame.stage.avarda.com/cdn/pay-frame.js';
-    const PROD_URL = 'https://pay-frame.avarda.com/cdn/pay-frame.js';
+    const TEST_URL = 'https://pay-frame.stage.avarda.com/cdn/v2/pay-frame.js';
+    const PROD_URL = 'https://pay-frame.avarda.com/cdn/v2/pay-frame.js';
     const MODE_CHECKOUT = 'checkout';
     const MODE_PAYMENTS = 'payments';
 
